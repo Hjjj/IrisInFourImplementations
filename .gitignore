@@ -1,0 +1,102 @@
+# Python-specific exclusions
+# Compiled Python files
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+*.py[cod]
+
+# Virtual environments
+venv/
+env/
+.venv/
+ENV/
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+*.egg
+
+# Dependency directories
+Pipfile.lock
+*.pip
+*.lock
+
+# Testing frameworks (Python)
+.pytest_cache/
+coverage/
+*.lcov
+*.coverage
+htmlcov/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# C#/.NET-specific exclusions
+# Build output
+bin/
+obj/
+*.dll
+*.exe
+*.pdb
+*.cache
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Visual Studio files
+.vs/
+*.csproj.user
+*.sln.ide/
+*.vcxproj.user
+*.vcxproj.filters
+*.DotSettings.user
+
+# NuGet packages
+packages/
+*.nupkg
+*.snupkg
+
+# .NET Core / ASP.NET Core
+appsettings.json      # Exclude sensitive config files (optional)
+*.runtimeconfig.json
+*.deps.json
+*.dll.config
+wwwroot/_content/     # Blazor/Javascript generated content
+
+# Testing frameworks (C#)
+TestResults/
+*.trx
+*.xml             # Test output files
+xUnitTestResults/
+
+# Logs and temporary files (both Python and C#)
+*.log
+*.log.*
+*.tmp
+temp/
+*.bak
+*.backup
+
+# IDE and editor files (common to both)
+.vscode/          # VS Code settings
+.idea/            # JetBrains Rider/PyCharm
+*.sublime-*       # Sublime Text
+*.swp             # Vim swap files
+
+# Operating system files
+.DS_Store         # macOS
+Thumbs.db         # Windows
+
+# Sensitive data (common to both)
+*.env             # Environment variables
+secrets/
+credentials.json
+*.key
+*.pem
+
+# Miscellaneous
+*.cache
+node_modules/     # If mixing with JavaScript (e.g., Blazor)
