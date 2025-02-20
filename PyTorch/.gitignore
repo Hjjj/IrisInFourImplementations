@@ -1,0 +1,60 @@
+# Python-specific exclusions
+# Compiled Python files
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+*.py[cod]
+
+# Virtual environments
+venv/
+env/
+.venv/
+ENV/
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+*.egg
+
+# Dependency directories
+Pipfile.lock
+*.pip
+*.lock
+
+# Testing frameworks
+.pytest_cache/
+coverage/
+*.lcov
+*.coverage
+htmlcov/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Logs and temporary files
+*.log
+*.log.*
+*.tmp
+temp/
+
+# IDE and editor files
+.vscode/        # VS Code settings
+.idea/          # PyCharm
+*.sublime-*     # Sublime Text
+*.swp           # Vim swap files
+
+# Operating system files
+.DS_Store       # macOS
+Thumbs.db       # Windows
+
+# Sensitive data
+*.env           # Environment variable files
+secrets/
+credentials.json
+
+# Miscellaneous
+*.bak
+*.backup
+*.cache
