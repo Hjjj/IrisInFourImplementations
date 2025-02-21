@@ -67,13 +67,13 @@ class Model:
 url = 'https://raw.githubusercontent.com/uiuc-cse/data-fa14/gh-pages/data/iris.csv'
 df = pd.read_csv(url)
 
-print("Sample of whats in df")
-print(df.head())
+#print("Sample of whats in df")
+#print(df.head())
 
 # Prepare the data
 df['species'] = pd.Categorical(df['species']).codes
-print("Sample of whats in df['species']")
-print(df['species'].head())
+#print("Sample of whats in df['species']")
+#print(df['species'].head())
 
 X = df.drop('species', axis=1).values
 y = df['species'].values
@@ -100,10 +100,16 @@ plt.title('Loss vs Epoch')
 plt.ylabel('Loss')
 plt.xlabel('Epoch')
 
+# Add a paragraph below the chart
+paragraph = ('This chart shows the loss per epoch during the training of the neural network. '
+             'The loss decreases over time, indicating that the model is learning and improving its predictions.')
+plt.gcf().set_size_inches(10, 6)  # Increase the figure size to accommodate the text
+plt.subplots_adjust(bottom=0.3)
+plt.text(0.0, -0.2, paragraph, ha='left', va='top', transform=plt.gca().transAxes, wrap=True)
+
 # Test the model with the X_test data
 y_eval = model.forward(X_test)
 loss = model.compute_loss(y_eval, y_test)
 
 print(f'Loss: {loss}')
-
 plt.show()
