@@ -96,20 +96,17 @@ for i in range(epochs):
 
 # Graph the loss per epoch
 plt.plot(range(epochs), losses)
-plt.title('Loss vs Epoch')
+plt.title('Loss vs Epoch (Pure Python Model)')
 plt.ylabel('Loss')
 plt.xlabel('Epoch')
-
-# Add a paragraph below the chart
-paragraph = ('This chart shows the loss per epoch during the training of the neural network. '
-             'The loss decreases over time, indicating that the model is learning and improving its predictions.')
-plt.gcf().set_size_inches(10, 6)  # Increase the figure size to accommodate the text
-plt.subplots_adjust(bottom=0.3)
-plt.text(0.0, -0.2, paragraph, ha='left', va='top', transform=plt.gca().transAxes, wrap=True)
 
 # Test the model with the X_test data
 y_eval = model.forward(X_test)
 loss = model.compute_loss(y_eval, y_test)
 
-print(f'Loss: {loss}')
+# Add a paragraph below the chart
+paragraph = (f'Epoch Count: {epochs}\nTested Loss: {loss:.3f}')
+plt.gcf().set_size_inches(10, 6)  # Increase the figure size to accommodate the text
+plt.subplots_adjust(bottom=0.3)
+plt.text(0.0, -0.2, paragraph, ha='left', va='top', transform=plt.gca().transAxes, wrap=True)
 plt.show()
