@@ -1,9 +1,11 @@
 using System;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
 using Microsoft.ML;
 using Microsoft.ML.Data;
+using Python.Runtime;
 
 namespace IrisClassification
 {
@@ -11,11 +13,49 @@ namespace IrisClassification
     {
         static void Main(string[] args)
         {
+            // Read the Python DLL path and data URL from the configuration file
+            string environmentVar = ConfigurationManager.AppSettings["EnvironmentVar"];
+            string pythonDllPath = ConfigurationManager.AppSettings["PythonDllPath"];
+            string dataUrl = ConfigurationManager.AppSettings["DataUrl"];
+            string plotFilePath = ConfigurationManager.AppSettings["PlotFilePath"];
+
+            // Set the environment variable for Python DLL
+            Environment.SetEnvironmentVariable(environmentVar, pythonDllPath);
+
+            // Initialize the Python runtime
+            PythonEngine.Initialize();
+
+            // Test python.net first
+            using (Py.GIL())
+            {
+                dynamic np = Py.Import("numpy");
+                dynamic plt = Py.Import("matplotlib.pyplot");
+
+                // Generate data
+                dynamic x = np.linspace(0, 10, 100);
+                dynamic y = np.sin(x);
+
+                // Create plot
+                plt.plot(x, y);
+                plt.title("Sine Wave from C#");
+                plt.xlabel("X-axis");
+                plt.ylabel("Y-axis");
+
+                // Save to file
+                plt.savefig(plotFilePath);
+                plt.close(); // Close to avoid display attempts
+            }
+
+            System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+            {
+                FileName = plotFilePath,
+                UseShellExecute = true
+            });
+
             // Create a new ML context for ML.NET operations
             var mlContext = new MLContext();
 
             // Load the data from URL
-            string dataUrl = "https://raw.githubusercontent.com/uiuc-cse/data-fa14/gh-pages/data/iris.csv";
             IDataView dataView = LoadDataFromUrl(mlContext, dataUrl);
 
             // Split the data into training and test sets
